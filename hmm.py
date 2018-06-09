@@ -12,6 +12,7 @@ warnings.filterwarnings("ignore", category=RuntimeWarning)
 
 use_saved_model = True
 STATES = 52
+TEST_FILE = 'test-1'
 
 try:
     target = sys.argv[1]
@@ -67,8 +68,9 @@ if target:
     print(decode_state(to_state(target, model), decoder))
 
 # test
-file_name = './dataset/test-1'
+file_name = './dataset/' + TEST_FILE
 words = load_file(file_name)
+print('Wordcount: {}'.format(len(words)))
 sequences = np.array(
     [string_to_charlist(word) for word in words])
 data = np.array([np.concatenate(sequences)]).T
@@ -97,7 +99,7 @@ accuracy = total_corrected / len(words) * 100
 print('Bypass accuracy: {}%'.format(accuracy))
 
 # typo correction accuracy
-file_name = './dataset/test-1-typo'
+file_name = './dataset/{}-typo'.format(TEST_FILE)
 typo_words = load_file(file_name)
 
 total_corrected = 0
