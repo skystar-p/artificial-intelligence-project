@@ -26,8 +26,5 @@ model = hmm.GaussianHMM(
     n_iter=1000)
 
 data = np.array([np.concatenate(sequences)])
-# data = np.concatenate([['a', 'p', 'p', 'l', 'e'], ['o', 'r', 'a', 'n', 'g', 'e']])
-# data = [ord(c) for c in data]
 data = np.array(data).T
-print(data)
 model.fit(data, lengths=len_list)
