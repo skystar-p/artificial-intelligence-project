@@ -19,3 +19,18 @@ def decode_state(state_list, decoder):
 def to_state(s, model):
     d = np.array([string_to_charlist(s)])
     return model.predict(d.T)
+
+
+def load_file(file_name):
+    f = open(file_name, 'r')
+    content = f.read()
+    f.close()
+
+    raw_words = content.split('_')
+
+    words = []
+    for w in raw_words:
+        if w.isalpha() or len(w) > 1:
+            words.append(w)
+
+    return words
